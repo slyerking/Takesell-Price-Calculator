@@ -231,13 +231,11 @@ export default function TakesellPricesCalculator() {
 
           <div className="mt-4">
             <label className="block text-sm font-medium">Price Mode</label>
-            <div className="mt-2 flex gap-2">
+            <div className="mt-2 flex gap-2 items-center">
               <button
                 onClick={() => setPriceMode("retail")}
                 className={`px-3 py-2 rounded ${
-                  priceMode === "retail"
-                    ? "bg-green-600 text-white"
-                    : "border"
+                  priceMode === "retail" ? "bg-green-600 text-white" : "border"
                 }`}
               >
                 Retail
@@ -245,15 +243,22 @@ export default function TakesellPricesCalculator() {
               <button
                 onClick={() => setPriceMode("wholesale")}
                 className={`px-3 py-2 rounded ${
-                  priceMode === "wholesale"
-                    ? "bg-green-600 text-white"
-                    : "border"
+                  priceMode === "wholesale" ? "bg-green-600 text-white" : "border"
                 }`}
               >
                 Wholesale
               </button>
+
+              {/* --- Grand Total Sidebar --- */}
+              <div className="ml-auto text-right">
+                <div className="text-xs text-gray-500">Grand Total</div>
+                <div className="font-bold text-lg">
+                  Tk {grandTotal.toLocaleString()}
+                </div>
+              </div>
             </div>
           </div>
+
         </div>
 
         {/* Main Section */}
