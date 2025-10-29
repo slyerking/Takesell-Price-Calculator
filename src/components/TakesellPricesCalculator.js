@@ -259,6 +259,30 @@ export default function TakesellPricesCalculator() {
             </div>
           </div>
 
+
+          {/* --- Itemized Breakdown --- */}
+          {products.some(p => (quantities[p.key] || 0) > 0) && (
+            <div className="mt-4 border-t border-gray-200 pt-2">
+              <h4 className="text-sm font-semibold text-gray-700 mb-1">Itemized Price Summary</h4>
+              <div className="max-h-40 overflow-auto text-sm">
+                {products.map((p) => {
+                  const qty = quantities[p.key] || 0;
+                  if (qty === 0) return null; // Qty 0 Shows Items if Item > 0
+                  const price = selectedFabric.prices?.[p.key]?.[priceMode] || 0;
+                  const total = price * qty;
+                  const unitLabel = p.key === "sofa" ? "Seats" : "Pcs"; // For sofa Shows seats
+                  return (
+                    <div key={p.key} className="flex justify-between mb-1">
+                      <span>{selectedFabric.name} {p.label} {qty} {unitLabel}</span>
+                      <span>Tk {total.toLocaleString()}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
+
         </div>
 
         {/* Main Section */}
